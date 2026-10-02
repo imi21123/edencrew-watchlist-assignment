@@ -37,7 +37,8 @@ class DetailController extends ChangeNotifier {
     if (!_disposed) notifyListeners();
     try {
       await store.loadQuote(initialStock.symbol);
-    } catch (_) {
+    } catch (error) {
+      if (kDebugMode) debugPrint('Naver detail quote: $error');
       quoteError = '현재 시세를 불러오지 못했습니다.';
     }
     quoteLoading = false;

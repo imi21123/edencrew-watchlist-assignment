@@ -50,6 +50,23 @@ void main() {
     source.close();
   });
 
+  test('text/plain 시세 서버의 콘텐츠 협상을 허용한다', () async {
+    final source = NaverSource(
+      client: MockClient((request) async {
+        if (request.headers['accept'] == 'application/json') {
+          return http.Response('not acceptable', 406);
+        }
+        return http.Response(
+          '{"resultCode":"success"}',
+          200,
+          headers: {'content-type': 'text/plain;charset=UTF-8'},
+        );
+      }),
+    );
+    expect(await source.get(uri), {'resultCode': 'success'});
+    source.close();
+  });
+
   test('HTTP 실패와 잘못된 JSON은 샘플로 대체하지 않는다', () async {
     final offline = NaverSource(
       client: MockClient((_) async => http.Response('unavailable', 503)),

@@ -15,7 +15,9 @@ class NaverSource implements StockSource {
   @override
   Future<Object?> get(Uri uri) async {
     final response = await _client
-        .get(uri, headers: {'Accept': 'application/json'})
+        // realtime은 JSON 본문을 text/plain으로 보낸다. application/json만
+        // 허용하면 실제 서버가 406을 반환하므로 두 응답 형식을 모두 받는다.
+        .get(uri, headers: {'Accept': '*/*'})
         .timeout(const Duration(seconds: 10));
     if (response.statusCode != 200) {
       throw StateError('HTTP ${response.statusCode}');

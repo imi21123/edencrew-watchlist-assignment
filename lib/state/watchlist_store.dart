@@ -103,7 +103,8 @@ class WatchlistStore extends ChangeNotifier {
           _quoteErrors[symbol] = '시세 정보가 없습니다';
         }
       }
-    } catch (_) {
+    } catch (error) {
+      if (kDebugMode) debugPrint('Naver quote refresh: $error');
       if (_disposed || revision != _revision) return;
       refreshError = '시세를 불러오지 못했습니다. 다시 시도해 주세요.';
       for (final symbol in symbols) {

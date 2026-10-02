@@ -85,6 +85,15 @@ void main() {
         tester.widget<Candlesticks>(find.byType(Candlesticks)).candles.length,
         greaterThan(monthCount),
       );
+      final chart = tester.widget<Candlesticks>(find.byType(Candlesticks));
+      expect(
+        chart.controller!.firstVisibleCandleIndexFor(chart.controller!.value),
+        0,
+      );
+      expect(
+        chart.controller!.lastVisibleCandleIndexFor(chart.controller!.value),
+        chart.candles.length - 1,
+      );
       expect(tester.takeException(), isNull);
     }
     final historyRequests = source.requests
@@ -140,7 +149,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(source.requests, isNotEmpty);
     expect(source.requests.single.queryParameters['q'], '긴');
-    final searchState = tester.widget<SearchScreen>(find.byType(SearchScreen)).controller;
+    final searchState = tester
+        .widget<SearchScreen>(find.byType(SearchScreen))
+        .controller;
     expect(searchState.error, isNull);
     expect(searchState.loading, isFalse);
     expect(searchState.query, '긴');

@@ -93,7 +93,12 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: CustomScrollView(
                   slivers: [
                     SliverPadding(
-                      padding: EdgeInsets.all(context.dimens.space4),
+                      padding: EdgeInsets.fromLTRB(
+                        context.dimens.space4,
+                        context.dimens.space4,
+                        context.dimens.space4,
+                        0,
+                      ),
                       sliver: SliverList.list(
                         children: [
                           _price(context, quote),
@@ -246,6 +251,7 @@ class _DetailScreenState extends State<DetailScreen> {
           style: TextStyle(
             color: context.colors.textPrimary,
             fontSize: 32,
+            height: 1.2,
             fontWeight: AppTypography.bold,
           ),
         ),

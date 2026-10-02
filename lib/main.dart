@@ -47,6 +47,13 @@ class _AppState extends State<EdencrewAssignmentApp> {
         ),
       ),
     ),
-    home: HomeScreen(store: _store, anchor: widget.anchor),
+    home: HomeScreen(
+      store: _store,
+      anchor:
+          widget.anchor ??
+          (const bool.fromEnvironment('USE_MOCK')
+              ? DateTime(2026, 10, 2)
+              : null),
+    ),
   );
 }
