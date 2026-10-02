@@ -43,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# 개인 개발 환경과 평가용 화면 캡처는 공개 저장소에 포함하지 않는다.
+.vscode/settings.json
+/validation/
