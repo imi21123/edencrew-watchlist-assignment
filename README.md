@@ -21,8 +21,6 @@ Flutter SDK와 Xcode의 첫 실행 설정이 필요합니다. `flutter doctor -v
 flutter run -d macos --dart-define=USE_MOCK=true
 ```
 
-Chrome 실행은 검증 대상이 아닙니다. Naver의 CORS 정책 및 네이티브 문자 인코딩 플러그인 때문에 macOS 실행을 사용해 주세요.
-
 폰트는 스타터의 `NotoSansKR` 400·500·700 OTF와 `pubspec.yaml` 등록을 그대로 사용합니다. 색상과 간격은 `context.colors` / `context.dimens`, 굵기는 `AppTypography`를 참조합니다. 디자인 토큰은 추가하지 않았습니다.
 
 ## 구현 범위
